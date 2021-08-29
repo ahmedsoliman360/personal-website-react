@@ -3,8 +3,8 @@ import Menu from "./components/menu/Menu";
 import Intro from "./components/intro/Intro";
 import Portfolio from "./components/portfolio/Portfolio";
 import Contact from "./components/contact/Contact";
-import Testimonials from "./components/testimonials/Testimonials";
-import Work from "./components/work/Work";
+// import Testimonials from "./components/testimonials/Testimonials";
+// import Work from "./components/work/Work";
 import "./app.scss";
 import { useState } from "react";
 function App() {
@@ -16,8 +16,8 @@ function App() {
       <div className="sections">
         <Intro />
         <Portfolio />
-        <Work />
-        <Testimonials />
+        {/* <Work />
+        <Testimonials /> */}
         <Contact />
       </div>
     </div>

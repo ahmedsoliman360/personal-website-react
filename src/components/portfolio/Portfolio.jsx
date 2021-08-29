@@ -1,9 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PortfolioList from "../portfolioList/PortfolioList";
 import "./Portfolio.scss";
+import {
+  featuredPortfolio,
+  webPortfolio,
+  mobilePortfolio,
+  // designPortfolio,
+  contentPortfolio,
+} from "../../data";
 export default function Portfolio() {
   const [selected, setSelected] = useState("featured");
+  const [data, setData] = useState([]);
+
   const list = [
     {
       id: "featured",
@@ -22,6 +31,27 @@ export default function Portfolio() {
       title: "Data Science",
     },
   ];
+
+  useEffect(() => {
+    switch (selected) {
+      case "featured":
+        setData(featuredPortfolio);
+        break;
+      case "web":
+        setData(webPortfolio);
+        break;
+      case "java":
+        setData(mobilePortfolio);
+        break;
+      case "dataSci":
+        setData(contentPortfolio);
+        break;
+
+      default:
+        break;
+    }
+  }, [selected]);
+
   return (
     <div className="portfolio" id="portfolio">
       <h1>Portfolio</h1>
@@ -36,34 +66,12 @@ export default function Portfolio() {
         ))}
       </ul>
       <div className="container">
-        <div className="item">
-          <img
-            src="https://images.unsplash.com/photo-1566241477600-ac026ad43874?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80"
-            alt=""
-          />
-          <h3>Test App</h3>
-        </div>
-        <div className="item">
-          <img
-            src="https://images.unsplash.com/photo-1566241477600-ac026ad43874?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80"
-            alt=""
-          />
-          <h3>Test App</h3>
-        </div>
-        <div className="item">
-          <img
-            src="https://images.unsplash.com/photo-1566241477600-ac026ad43874?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80"
-            alt=""
-          />
-          <h3>Test App</h3>
-        </div>
-        <div className="item">
-          <img
-            src="https://images.unsplash.com/photo-1566241477600-ac026ad43874?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1030&q=80"
-            alt=""
-          />
-          <h3>Test App</h3>
-        </div>
+        {data.map((d) => (
+          <div className="item">
+            <img src={d.img} alt="" />
+            <h3>{d.title}</h3>
+          </div>
+        ))}
       </div>
     </div>
   );
